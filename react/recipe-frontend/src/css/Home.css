@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+/* ==========================================
+   GLOBAL
+========================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: #faf8f5;
+}
+
+
+/* ==========================================
+   NAVBAR
+========================================== */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 20px 8%;
+
+    background: linear-gradient(
+        90deg,
+        #ff6b35,
+        #ff914d
+    );
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+
+    position: sticky;
+    top: 0;
+
+    z-index: 100;
+}
+
+
+.header h1 {
+    color: white;
+
+    font-size: 34px;
+
+    font-weight: 700;
+}
+
+
+.header nav {
+    display: flex;
+    align-items: center;
+}
+
+
+.header nav a {
+    color: white;
+
+    text-decoration: none;
+
+    margin-left: 25px;
+
+    font-size: 18px;
+
+    font-weight: 500;
+
+    transition: 0.3s;
+}
+
+
+.header nav a:hover {
+    color: #222;
+
+    transform: translateY(-2px);
+}
+
+
+/* ==========================================
+   HERO
+========================================== */
+
+.hero {
+    min-height: 90vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+        ),
+        url("https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1400&q=80");
+
+    background-size: cover;
+
+    background-position: center;
+
+    color: white;
+
+    padding: 40px 20px;
+}
+
+
+.hero h2 {
+    font-size: 55px;
+
+    margin-bottom: 20px;
+
+    font-weight: 700;
+}
+
+
+.hero p {
+    font-size: 22px;
+
+    width: 60%;
+
+    line-height: 1.8;
+}
+
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.buttons {
+    margin-top: 35px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+}
+
+
+.btn {
+    display: inline-block;
+
+    padding: 14px 35px;
+
+    border-radius: 40px;
+
+    text-decoration: none;
+
+    font-size: 18px;
+
+    margin: 10px;
+
+    font-weight: 600;
+
+    transition: 0.4s;
+}
+
+
+/* LOGIN */
+
+.btn:first-child {
+    background: #ff6b35;
+
+    color: white;
+}
+
+
+/* SIGNUP */
+
+.signup {
+    background: #28a745;
+
+    color: white;
+}
+
+
+/* ADMIN LOGIN */
+
+.admin-btn {
+    background: #333;
+
+    color: white;
+}
+
+
+/* BUTTON HOVER */
+
+.btn:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ==========================================
+   FEATURES
+========================================== */
+
+.features {
+    padding: 80px 10%;
+
+    background: white;
+}
+
+
+.features h2 {
+    text-align: center;
+
+    font-size: 40px;
+
+    color: #ff6b35;
+
+    margin-bottom: 50px;
+}
+
+
+.feature-container {
+    display: flex;
+
+    justify-content: center;
+
+    gap: 35px;
+
+    flex-wrap: wrap;
+}
+
+
+.card {
+    width: 320px;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    background: white;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.12);
+
+    transition: 0.4s;
+
+    text-align: center;
+}
+
+
+.card:hover {
+    transform: translateY(-10px);
+}
+
+
+.card h3 {
+    color: #ff6b35;
+
+    margin-bottom: 15px;
+}
+
+
+.card p {
+    color: #555;
+
+    line-height: 1.6;
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer {
+    background: #222;
+
+    color: white;
+
+    padding: 25px;
+
+    text-align: center;
+
+    margin-top: 50px;
+}
+
+
+/* ==========================================
+   MOBILE RESPONSIVE
+========================================== */
+
+@media (max-width: 768px) {
+
+    .header {
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding: 20px;
+    }
+
+
+    .header h1 {
+        font-size: 28px;
+    }
+
+
+    .header nav {
+        flex-wrap: wrap;
+
+        justify-content: center;
+    }
+
+
+    .header nav a {
+        margin: 5px 10px;
+
+        font-size: 16px;
+    }
+
+
+    .hero h2 {
+        font-size: 38px;
+    }
+
+
+    .hero p {
+        width: 90%;
+
+        font-size: 18px;
+    }
+
+
+    .btn {
+        padding: 12px 25px;
+
+        font-size: 16px;
+    }
+
+
+    .features {
+        padding: 60px 5%;
+    }
+
+}

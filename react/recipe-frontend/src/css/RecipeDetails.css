@@ -1,0 +1,760 @@
+/* =========================================================
+   PAGE
+========================================================= */
+
+.recipe-details-page {
+    min-height: 100vh;
+    background: #f7f8fa;
+    padding: 24px;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #20252d;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.recipe-details-container {
+    max-width: 1500px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(380px, 1fr);
+
+    gap: 20px;
+    align-items: start;
+}
+
+
+/* =========================================================
+   LEFT / RIGHT
+========================================================= */
+
+.details-left,
+.details-right {
+    min-width: 0;
+}
+
+
+/* =========================================================
+   BACK BUTTON
+========================================================= */
+
+.details-back-link {
+    display: inline-flex;
+    align-items: center;
+
+    text-decoration: none;
+
+    color: #ff6500;
+
+    border: 1px solid #ffb37d;
+
+    background: #ffffff;
+
+    padding: 10px 16px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    margin-bottom: 20px;
+
+    transition: 0.2s ease;
+}
+
+.details-back-link:hover {
+    background: #fff5ed;
+    border-color: #ff6500;
+}
+
+
+/* =========================================================
+   MAIN RECIPE CARD
+========================================================= */
+
+.recipe-main-card {
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    padding: 18px;
+
+    display: grid;
+
+    grid-template-columns: minmax(400px, 1.2fr) minmax(300px, 0.9fr);
+
+    gap: 36px;
+
+    box-shadow:
+        0 3px 15px rgba(0, 0, 0, 0.06);
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.details-image-container {
+    width: 100%;
+    height: 530px;
+
+    overflow: hidden;
+
+    border-radius: 8px;
+
+    background: #eeeeee;
+}
+
+.details-recipe-image {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   RECIPE INFO
+========================================================= */
+
+.details-info {
+    padding: 25px 12px 15px 0;
+}
+
+.recipe-label {
+    color: #ff6500;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.5px;
+
+    margin-bottom: 22px;
+}
+
+.details-info h1 {
+    font-size: 48px;
+
+    line-height: 1.1;
+
+    margin: 0 0 22px;
+
+    color: #171b21;
+
+    font-weight: 800;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.details-category {
+    display: inline-block;
+
+    padding: 7px 15px;
+
+    background: #fff0e7;
+
+    color: #f45d00;
+
+    border-radius: 20px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-bottom: 28px;
+}
+
+
+/* =========================================================
+   META
+========================================================= */
+
+.recipe-meta {
+    border-top: 1px solid #e5e7eb;
+}
+
+.meta-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 15px 0;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.meta-icon {
+    width: 54px;
+    height: 54px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 23px;
+
+    flex-shrink: 0;
+}
+
+.meta-icon.orange {
+    background: #fff1e8;
+}
+
+.meta-icon.purple {
+    background: #f2f0fa;
+}
+
+.meta-icon.green {
+    background: #eff8ea;
+}
+
+.meta-item span {
+    display: block;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    color: #444b55;
+
+    margin-bottom: 5px;
+}
+
+.meta-item strong {
+    display: block;
+
+    font-size: 16px;
+
+    color: #171b21;
+}
+
+
+/* =========================================================
+   DIFFICULTY
+========================================================= */
+
+.difficulty-value {
+    display: inline-block;
+
+    padding: 4px 12px;
+
+    border-radius: 20px;
+
+    font-size: 14px !important;
+}
+
+.difficulty-value.easy {
+    background: #eaf8df;
+    color: #3f8d24;
+}
+
+.difficulty-value.medium {
+    background: #fff5d9;
+    color: #a87400;
+}
+
+.difficulty-value.hard {
+    background: #ffe4e1;
+    color: #c0392b;
+}
+
+
+/* =========================================================
+   CREATED BY
+========================================================= */
+
+.created-by {
+    margin-top: 15px;
+}
+
+.created-by h3 {
+    margin: 0 0 12px;
+
+    font-size: 16px;
+
+    color: #555d68;
+}
+
+.creator-details {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+}
+
+.creator-avatar {
+    width: 52px;
+    height: 52px;
+
+    border-radius: 50%;
+
+    background: #f0eaff;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+}
+
+.creator-details strong {
+    display: block;
+
+    font-size: 17px;
+
+    margin-bottom: 5px;
+}
+
+.creator-details span {
+    display: block;
+
+    color: #737b86;
+
+    font-size: 14px;
+}
+
+.created-date {
+    margin-top: 16px;
+
+    color: #59616c;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   INGREDIENTS
+========================================================= */
+
+.ingredients-section {
+    background: #ffffff;
+
+    margin-top: 20px;
+
+    border-radius: 14px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 3px 15px rgba(0, 0, 0, 0.06);
+}
+
+.section-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    padding-bottom: 18px;
+
+    margin-bottom: 20px;
+}
+
+.section-title-icon {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 12px;
+
+    background: #fff1e8;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 23px;
+}
+
+.section-title h2 {
+    margin: 0 0 4px;
+
+    font-size: 22px;
+}
+
+.section-title p {
+    margin: 0;
+
+    color: #737b86;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   INGREDIENT GRID
+========================================================= */
+
+.ingredients-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    column-gap: 40px;
+}
+
+.ingredient-item {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    min-height: 44px;
+
+    font-size: 15px;
+
+    color: #343b45;
+
+    border-bottom: 1px solid #f0f1f2;
+}
+
+.ingredient-check {
+    width: 22px;
+    height: 22px;
+
+    border-radius: 50%;
+
+    background: #eaf8df;
+
+    color: #52a832;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   PREPARATION CARD
+========================================================= */
+
+.preparation-section {
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    padding: 20px;
+
+    box-shadow:
+        0 3px 15px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =========================================================
+   PREPARATION HEADER
+========================================================= */
+
+.preparation-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 5px 5px 20px;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.preparation-icon {
+    width: 50px;
+    height: 50px;
+
+    border-radius: 12px;
+
+    background: #fff0e7;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+}
+
+.preparation-header h2 {
+    margin: 0 0 5px;
+
+    font-size: 22px;
+}
+
+.preparation-header p {
+    margin: 0;
+
+    color: #737b86;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   STEPS
+========================================================= */
+
+.steps-container {
+    border: 1px solid #e0e3e7;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    margin-top: 18px;
+}
+
+.step-item {
+    display: flex;
+
+    gap: 20px;
+
+    padding: 20px 16px;
+
+    border-bottom: 1px solid #e1e4e8;
+
+    background: #ffffff;
+}
+
+.step-item:last-child {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   STEP NUMBER
+========================================================= */
+
+.step-number {
+    width: 40px;
+    height: 40px;
+
+    min-width: 40px;
+
+    border-radius: 50%;
+
+    background: #ff6500;
+
+    color: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   STEP CONTENT
+========================================================= */
+
+.step-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+.step-content h3 {
+    margin: 2px 0 8px;
+
+    font-size: 17px;
+
+    color: #171b21;
+}
+
+.step-content p {
+    margin: 0;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    color: #444b55;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty-text,
+.empty-steps {
+    color: #777f89;
+
+    padding: 20px;
+}
+
+
+/* =========================================================
+   LOADING / ERROR
+========================================================= */
+
+.details-message {
+    min-height: 70vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+.details-message h2 {
+    margin: 15px 0;
+}
+
+.details-spinner {
+    width: 42px;
+    height: 42px;
+
+    border: 4px solid #eeeeee;
+
+    border-top-color: #ff6500;
+
+    border-radius: 50%;
+
+    animation: recipeSpin 0.8s linear infinite;
+}
+
+@keyframes recipeSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.details-error-icon {
+    font-size: 55px;
+}
+
+.details-back-btn {
+    border: none;
+
+    background: #ff6500;
+
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .recipe-details-container {
+        grid-template-columns: 1fr;
+    }
+
+    .details-right {
+        width: 100%;
+    }
+
+    .recipe-main-card {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .recipe-details-page {
+        padding: 12px;
+    }
+
+    .recipe-main-card {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+
+        padding: 14px;
+    }
+
+    .details-image-container {
+        height: 320px;
+    }
+
+    .details-info {
+        padding: 5px;
+    }
+
+    .details-info h1 {
+        font-size: 34px;
+    }
+
+    .ingredients-section {
+        padding: 18px;
+    }
+
+    .ingredients-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .preparation-section {
+        padding: 14px;
+    }
+
+    .step-item {
+        gap: 12px;
+
+        padding: 16px 12px;
+    }
+
+    .step-number {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+    }
+
+}

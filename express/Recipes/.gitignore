@@ -1,11 +1,6 @@
 node_modules/
 .env
-
 react/node_modules/
 react/.env
-
 express/node_modules/
 express/.env
-
-express/Recipes/node_modules/
-express/Recipes/.env

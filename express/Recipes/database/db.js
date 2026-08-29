@@ -1,26 +1,17 @@
 const mongoose = require("mongoose");
 
-// ======================================================
-// MONGODB CONNECTION
-// ======================================================
-
-mongoose.connect("mongodb://127.0.0.1:27017/my_recipe");
-
-// ======================================================
-// DATABASE CONNECTION
-// ======================================================
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => {
+        console.log("Connected to MongoDB Atlas");
+    })
+    .catch((error) => {
+        console.error("MongoDB connection error:", error);
+    });
 
 const db = mongoose.connection;
 
-// Connection error
 db.on("error", (error) => {
     console.error("MongoDB connection error:", error);
 });
 
-// Successfully connected
-db.once("open", () => {
-    console.log("Connected to MongoDB");
-});
-
-// Export database connection
 module.exports = db;
