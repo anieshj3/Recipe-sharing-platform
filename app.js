@@ -73,6 +73,8 @@ app.set(
     "ejs"
 );
 
+app.locals.title = "Recipe Sharing Platform";
+
 
 // ======================================================
 // MIDDLEWARE
