@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RecipeShare Admin Login</title>
+
+    <link rel="stylesheet" href="/stylesheets/adminLogin.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <h1>RecipeShare Admin</h1>
+
+        <h2>Admin Login</h2>
+
+        <form action="/admin/login" method="POST">
+
+            <div class="input-group">
+
+                <label>Admin Username</label>
+
+                <input
+                    type="text"
+                    name="username"
+                    placeholder="Enter Admin Username"
+                    required>
+
+            </div>
+
+            <div class="input-group">
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter Password"
+                    required>
+
+            </div>
+
+            <div class="remember">
+
+                <input type="checkbox" name="remember">
+
+                <label>Remember Me</label>
+
+            </div>
+
+            <button type="submit">
+
+                ADMIN LOGIN
+
+            </button>
+
+        </form>
+
+    </div>
+
+</body>
+
+</html>
