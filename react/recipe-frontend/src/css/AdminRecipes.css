@@ -1,0 +1,389 @@
+/* ======================================================
+   MAIN PAGE
+====================================================== */
+
+.admin-recipes-page {
+    min-height: 100vh;
+    background: #f5f6fa;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+
+/* ======================================================
+   HEADER
+====================================================== */
+
+.admin-recipes-header {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.admin-recipes-header h1 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.admin-recipes-header p {
+    margin-top: 8px;
+    color: #666;
+}
+
+
+/* ======================================================
+   LOGOUT BUTTON
+====================================================== */
+
+.admin-logout-btn {
+    background: #dc3545;
+    color: white;
+
+    border: none;
+    padding: 12px 22px;
+
+    border-radius: 6px;
+    cursor: pointer;
+
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.admin-logout-btn:hover {
+    background: #bb2d3b;
+}
+
+
+/* ======================================================
+   NAVIGATION
+====================================================== */
+
+.admin-recipes-navigation {
+    background: white;
+
+    padding: 15px;
+    border-radius: 10px;
+
+    margin-bottom: 25px;
+
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.admin-recipes-navigation a {
+    text-decoration: none;
+}
+
+.admin-recipes-navigation button {
+    border: none;
+
+    background: #007bff;
+    color: white;
+
+    padding: 11px 18px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.admin-recipes-navigation button:hover {
+    background: #0056b3;
+}
+
+.admin-recipes-navigation button.active {
+    background: #28a745;
+}
+
+
+/* ======================================================
+   ERROR MESSAGE
+====================================================== */
+
+.admin-recipes-error {
+    background: #ffe6e6;
+
+    color: #c00000;
+
+    padding: 15px;
+
+    border-radius: 8px;
+
+    margin-bottom: 20px;
+
+    border-left: 5px solid #dc3545;
+}
+
+
+/* ======================================================
+   TITLE
+====================================================== */
+
+.admin-recipes-title {
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.admin-recipes-title h2 {
+    margin: 0 0 8px;
+}
+
+.admin-recipes-title p {
+    margin: 0;
+    color: #666;
+}
+
+
+/* ======================================================
+   LOADING
+====================================================== */
+
+.admin-recipes-loading {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #f5f6fa;
+}
+
+
+/* ======================================================
+   NO RECIPES
+====================================================== */
+
+.no-recipes {
+    background: white;
+
+    padding: 60px 20px;
+
+    border-radius: 12px;
+
+    text-align: center;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.no-recipes h2 {
+    margin-bottom: 10px;
+}
+
+.no-recipes p {
+    color: #666;
+}
+
+
+/* ======================================================
+   TABLE CONTAINER
+====================================================== */
+
+.recipes-table-container {
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    overflow-x: auto;
+
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ======================================================
+   TABLE
+====================================================== */
+
+.recipes-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 950px;
+}
+
+.recipes-table th {
+    background: #f0f2f5;
+
+    padding: 14px;
+
+    border: 1px solid #ddd;
+
+    text-align: left;
+
+    font-size: 14px;
+}
+
+.recipes-table td {
+    padding: 14px;
+
+    border: 1px solid #ddd;
+
+    vertical-align: middle;
+}
+
+.recipes-table tbody tr:hover {
+    background: #f8f9fa;
+}
+
+
+/* ======================================================
+   RECIPE IMAGE
+====================================================== */
+
+.recipe-admin-image {
+    width: 80px;
+    height: 65px;
+
+    object-fit: cover;
+
+    border-radius: 8px;
+
+    display: block;
+}
+
+.no-image {
+    width: 80px;
+    height: 65px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: #eeeeee;
+
+    border-radius: 8px;
+
+    font-size: 25px;
+}
+
+
+/* ======================================================
+   DIFFICULTY BADGE
+====================================================== */
+
+.difficulty-badge {
+    display: inline-block;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.difficulty-badge.easy {
+    background: #d4edda;
+    color: #155724;
+}
+
+.difficulty-badge.medium {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.difficulty-badge.hard {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.difficulty-badge.unknown {
+    background: #e2e3e5;
+    color: #383d41;
+}
+
+
+/* ======================================================
+   DELETE BUTTON
+====================================================== */
+
+.delete-recipe-btn {
+    background: #dc3545;
+
+    color: white;
+
+    border: none;
+
+    padding: 9px 14px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+.delete-recipe-btn:hover {
+    background: #b02a37;
+}
+
+
+/* ======================================================
+   FOOTER
+====================================================== */
+
+.admin-recipes-footer {
+    text-align: center;
+
+    padding: 25px;
+
+    color: #777;
+}
+
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media (max-width: 768px) {
+
+    .admin-recipes-page {
+        padding: 15px;
+    }
+
+    .admin-recipes-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .admin-recipes-header h1 {
+        font-size: 23px;
+    }
+
+    .admin-recipes-navigation {
+        flex-direction: column;
+    }
+
+    .admin-recipes-navigation button {
+        width: 100%;
+    }
+
+}

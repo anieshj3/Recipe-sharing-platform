@@ -27,24 +27,27 @@ const authenticateUser = async (req, res, next) => {
         const authHeader = req.headers.authorization;
 
         if (!authHeader) {
-
             return res.status(401).json({
                 success: false,
                 message: "Authorization token is required."
             });
-
         }
 
         if (!authHeader.startsWith("Bearer ")) {
-
             return res.status(401).json({
                 success: false,
                 message: "Invalid authorization format."
             });
-
         }
 
         const token = authHeader.split(" ")[1];
+
+        if (!token) {
+            return res.status(401).json({
+                success: false,
+                message: "Token is missing."
+            });
+        }
 
         const decoded = jwt.verify(
             token,
@@ -57,27 +60,32 @@ const authenticateUser = async (req, res, next) => {
             decoded._id;
 
         if (!userId) {
-
             return res.status(401).json({
                 success: false,
                 message: "Invalid token."
             });
-
         }
 
-        const user = await User.findById(userId);
+        if (
+            !mongoose.Types.ObjectId.isValid(userId)
+        ) {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid user ID."
+            });
+        }
+
+        const user =
+            await User.findById(userId).select("-password");
 
         if (!user) {
-
             return res.status(401).json({
                 success: false,
                 message: "User not found."
             });
-
         }
 
         req.user = user;
-
         req.userId = user._id;
 
         next();
@@ -93,300 +101,365 @@ const authenticateUser = async (req, res, next) => {
             success: false,
             message: "Invalid or expired token."
         });
-
     }
 };
 
 
 // ======================================================
 // SIGNUP
-// POST /api/signup
+// POST /api/signupapi
 // ======================================================
 
-router.post("/signup", async (req, res) => {
+router.post(
+    "/signupapi",
+    async (req, res) => {
 
-    try {
+        try {
 
-        const {
-            name,
-            email,
-            password,
-            passwordConf
-        } = req.body;
-
-
-        // ----------------------------------------------
-        // VALIDATION
-        // ----------------------------------------------
-
-        if (
-            !name ||
-            !email ||
-            !password ||
-            !passwordConf
-        ) {
-
-            return res.status(400).json({
-                success: false,
-                message: "Please fill all fields."
-            });
-
-        }
-
-
-        if (password !== passwordConf) {
-
-            return res.status(400).json({
-                success: false,
-                message: "Passwords do not match."
-            });
-
-        }
-
-
-        if (password.length < 6) {
-
-            return res.status(400).json({
-                success: false,
-                message:
-                    "Password must be at least 6 characters."
-            });
-
-        }
-
-
-        // ----------------------------------------------
-        // CHECK EXISTING USER
-        // ----------------------------------------------
-
-        const existingUser =
-            await User.findOne({
-                email: email.toLowerCase().trim()
-            });
-
-
-        if (existingUser) {
-
-            return res.status(409).json({
-                success: false,
-                message: "Email already registered."
-            });
-
-        }
-
-
-        // ----------------------------------------------
-        // HASH PASSWORD
-        // ----------------------------------------------
-
-        const hashedPassword =
-            await bcrypt.hash(
+            const {
+                name,
+                email,
                 password,
-                10
-            );
+                passwordConf
+            } = req.body;
 
+            // ------------------------------------------
+            // VALIDATION
+            // ------------------------------------------
 
-        // ----------------------------------------------
-        // CREATE USER
-        // ----------------------------------------------
+            if (
+                !name ||
+                !email ||
+                !password
+            ) {
 
-        const user =
-            await User.create({
-
-                name: name.trim(),
-
-                email:
-                    email
-                        .toLowerCase()
-                        .trim(),
-
-                password: hashedPassword
-
-            });
-
-
-        return res.status(201).json({
-
-            success: true,
-
-            message:
-                "Registration successful.",
-
-            user: {
-
-                id: user._id,
-
-                name: user.name,
-
-                email: user.email
-
+                return res.status(400).json({
+                    success: false,
+                    message: "Please fill all required fields."
+                });
             }
 
-        });
+            if (name.trim().length < 2) {
 
-    } catch (error) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Name must contain at least 2 characters."
+                });
+            }
 
-        console.error(
-            "Signup Error:",
-            error
-        );
+            if (password.length < 6) {
 
-        return res.status(500).json({
+                return res.status(400).json({
+                    success: false,
+                    message:
+                        "Password must be at least 6 characters."
+                });
+            }
 
-            success: false,
+            // ------------------------------------------
+            // PASSWORD CONFIRMATION
+            // ------------------------------------------
 
-            message:
-                "Unable to register user."
+            // Your current React Signup sends only
+            // password, so passwordConf is optional here.
+            //
+            // If it is sent, check it.
 
-        });
+            if (
+                passwordConf &&
+                password !== passwordConf
+            ) {
 
+                return res.status(400).json({
+                    success: false,
+                    message: "Passwords do not match."
+                });
+            }
+
+            // ------------------------------------------
+            // EMAIL VALIDATION
+            // ------------------------------------------
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (
+                !emailPattern.test(
+                    email.trim()
+                )
+            ) {
+
+                return res.status(400).json({
+                    success: false,
+                    message: "Please enter a valid email address."
+                });
+            }
+
+            // ------------------------------------------
+            // CHECK EXISTING USER
+            // ------------------------------------------
+
+            const normalizedEmail =
+                email
+                    .toLowerCase()
+                    .trim();
+
+            const existingUser =
+                await User.findOne({
+                    email: normalizedEmail
+                });
+
+            if (existingUser) {
+
+                return res.status(409).json({
+                    success: false,
+                    message: "Email already registered."
+                });
+            }
+
+            // ------------------------------------------
+            // HASH PASSWORD
+            // ------------------------------------------
+
+            const hashedPassword =
+                await bcrypt.hash(
+                    password,
+                    10
+                );
+
+            // ------------------------------------------
+            // CREATE USER
+            // ------------------------------------------
+
+            const user =
+                await User.create({
+
+                    name: name.trim(),
+
+                    email: normalizedEmail,
+
+                    password: hashedPassword,
+
+                    bio: "",
+
+                    gender: "Other",
+
+                    profileImage: ""
+
+                });
+
+            // ------------------------------------------
+            // RESPONSE
+            // ------------------------------------------
+
+            return res.status(201).json({
+
+                success: true,
+
+                message:
+                    "Registration successful.",
+
+                user: {
+
+                    _id: user._id,
+
+                    name: user.name,
+
+                    email: user.email,
+
+                    bio: user.bio || "",
+
+                    gender: user.gender || "Other",
+
+                    profileImage:
+                        user.profileImage || ""
+
+                }
+
+            });
+
+        } catch (error) {
+
+            console.error(
+                "Signup Error:",
+                error
+            );
+
+            // Duplicate email protection
+            if (error.code === 11000) {
+
+                return res.status(409).json({
+                    success: false,
+                    message: "Email already registered."
+                });
+            }
+
+            return res.status(500).json({
+
+                success: false,
+
+                message:
+                    "Unable to register user."
+
+            });
+        }
     }
-
-});
+);
 
 
 // ======================================================
 // LOGIN
-// POST /api/login
+// POST /api/loginapi
 // ======================================================
 
-router.post("/login", async (req, res) => {
+router.post(
+    "/loginapi",
+    async (req, res) => {
 
-    try {
+        try {
 
-        const {
-            email,
-            password
-        } = req.body;
+            const {
+                email,
+                password
+            } = req.body;
 
+            // ------------------------------------------
+            // VALIDATION
+            // ------------------------------------------
 
-        if (!email || !password) {
+            if (
+                !email ||
+                !password
+            ) {
 
-            return res.status(400).json({
+                return res.status(400).json({
 
-                success: false,
+                    success: false,
 
-                message:
-                    "Email and password are required."
+                    message:
+                        "Email and password are required."
 
-            });
-
-        }
-
-
-        // ----------------------------------------------
-        // FIND USER
-        // ----------------------------------------------
-
-        const user =
-            await User.findOne({
-
-                email:
-                    email
-                        .toLowerCase()
-                        .trim()
-
-            });
-
-
-        if (!user) {
-
-            return res.status(401).json({
-
-                success: false,
-
-                message:
-                    "Invalid email or password."
-
-            });
-
-        }
-
-
-        // ----------------------------------------------
-        // CHECK PASSWORD
-        // ----------------------------------------------
-
-        const passwordMatch =
-            await bcrypt.compare(
-                password,
-                user.password
-            );
-
-
-        if (!passwordMatch) {
-
-            return res.status(401).json({
-
-                success: false,
-
-                message:
-                    "Invalid email or password."
-
-            });
-
-        }
-
-
-        // ----------------------------------------------
-        // CREATE TOKEN
-        // ----------------------------------------------
-
-        const token =
-            jwt.sign(
-
-                {
-                    id: user._id
-                },
-
-                JWT_SECRET,
-
-                {
-                    expiresIn: "7d"
-                }
-
-            );
-
-
-        return res.json({
-
-            success: true,
-
-            message: "Login successful.",
-
-            token: token,
-
-            user: {
-
-                id: user._id,
-
-                name: user.name,
-
-                email: user.email
-
+                });
             }
 
-        });
+            // ------------------------------------------
+            // FIND USER
+            // ------------------------------------------
 
-    } catch (error) {
+            const user =
+                await User.findOne({
 
-        console.error(
-            "Login Error:",
-            error
-        );
+                    email:
+                        email
+                            .toLowerCase()
+                            .trim()
 
-        return res.status(500).json({
+                });
 
-            success: false,
+            if (!user) {
 
-            message:
-                "Unable to login."
+                return res.status(401).json({
 
-        });
+                    success: false,
 
+                    message:
+                        "Invalid email or password."
+
+                });
+            }
+
+            // ------------------------------------------
+            // CHECK PASSWORD
+            // ------------------------------------------
+
+            const passwordMatch =
+                await bcrypt.compare(
+                    password,
+                    user.password
+                );
+
+            if (!passwordMatch) {
+
+                return res.status(401).json({
+
+                    success: false,
+
+                    message:
+                        "Invalid email or password."
+
+                });
+            }
+
+            // ------------------------------------------
+            // CREATE JWT
+            // ------------------------------------------
+
+            const token =
+                jwt.sign(
+
+                    {
+                        id: user._id
+                    },
+
+                    JWT_SECRET,
+
+                    {
+                        expiresIn: "7d"
+                    }
+                );
+
+            // ------------------------------------------
+            // RESPONSE
+            // ------------------------------------------
+
+            return res.json({
+
+                success: true,
+
+                message:
+                    "Login successful.",
+
+                token: token,
+
+                user: {
+
+                    _id: user._id,
+
+                    name: user.name,
+
+                    email: user.email,
+
+                    bio:
+                        user.bio || "",
+
+                    gender:
+                        user.gender || "Other",
+
+                    profileImage:
+                        user.profileImage || ""
+
+                }
+
+            });
+
+        } catch (error) {
+
+            console.error(
+                "Login Error:",
+                error
+            );
+
+            return res.status(500).json({
+
+                success: false,
+
+                message:
+                    "Unable to login."
+
+            });
+        }
     }
-
-});
+);
 
 
 // ======================================================
@@ -411,7 +484,6 @@ router.get(
                         createdAt: -1
                     });
 
-
             return res.json({
 
                 success: true,
@@ -435,9 +507,7 @@ router.get(
                     "Unable to fetch recipes."
 
             });
-
         }
-
     }
 );
 
@@ -458,14 +528,13 @@ router.get(
                 await Recipe.find({
                     userId: req.userId
                 })
-                .populate(
-                    "userId",
-                    "name email"
-                )
-                .sort({
-                    createdAt: -1
-                });
-
+                    .populate(
+                        "userId",
+                        "name email"
+                    )
+                    .sort({
+                        createdAt: -1
+                    });
 
             return res.json({
 
@@ -490,9 +559,7 @@ router.get(
                     "Unable to fetch your recipes."
 
             });
-
         }
-
     }
 );
 
@@ -520,7 +587,6 @@ router.post(
                 image
             } = req.body;
 
-
             // ------------------------------------------
             // VALIDATION
             // ------------------------------------------
@@ -542,12 +608,10 @@ router.post(
                         "Please fill all required recipe fields."
 
                 });
-
             }
 
-
             // ------------------------------------------
-            // CONVERT INGREDIENTS
+            // INGREDIENTS
             // ------------------------------------------
 
             let ingredientsArray = [];
@@ -570,12 +634,10 @@ router.post(
                             item.trim()
                         )
                         .filter(Boolean);
-
             }
 
-
             // ------------------------------------------
-            // CONVERT STEPS
+            // STEPS
             // ------------------------------------------
 
             let stepsArray = [];
@@ -598,9 +660,7 @@ router.post(
                             step.trim()
                         )
                         .filter(Boolean);
-
             }
-
 
             // ------------------------------------------
             // CREATE RECIPE
@@ -637,12 +697,10 @@ router.post(
 
                     userId:
                         req.userId
-
                 });
 
-
             // ------------------------------------------
-            // RESPONSE
+            // POPULATE USER
             // ------------------------------------------
 
             const populatedRecipe =
@@ -652,7 +710,6 @@ router.post(
                     "userId",
                     "name email"
                 );
-
 
             return res.status(201).json({
 
@@ -682,9 +739,7 @@ router.post(
                     "Unable to create recipe."
 
             });
-
         }
-
     }
 );
 
@@ -701,10 +756,8 @@ router.get(
 
         try {
 
-            const {
-                id
-            } = req.params;
-
+            const { id } =
+                req.params;
 
             if (
                 !mongoose.Types.ObjectId.isValid(id)
@@ -718,9 +771,7 @@ router.get(
                         "Invalid recipe ID."
 
                 });
-
             }
-
 
             const recipe =
                 await Recipe.findById(id)
@@ -728,7 +779,6 @@ router.get(
                         "userId",
                         "name email"
                     );
-
 
             if (!recipe) {
 
@@ -740,9 +790,7 @@ router.get(
                         "Recipe not found."
 
                 });
-
             }
-
 
             return res.json({
 
@@ -767,9 +815,7 @@ router.get(
                     "Unable to fetch recipe."
 
             });
-
         }
-
     }
 );
 
@@ -786,10 +832,8 @@ router.put(
 
         try {
 
-            const {
-                id
-            } = req.params;
-
+            const { id } =
+                req.params;
 
             if (
                 !mongoose.Types.ObjectId.isValid(id)
@@ -803,13 +847,10 @@ router.put(
                         "Invalid recipe ID."
 
                 });
-
             }
-
 
             const recipe =
                 await Recipe.findById(id);
-
 
             if (!recipe) {
 
@@ -821,12 +862,10 @@ router.put(
                         "Recipe not found."
 
                 });
-
             }
 
-
             // ------------------------------------------
-            // CHECK OWNER
+            // OWNER CHECK
             // ------------------------------------------
 
             if (
@@ -842,9 +881,7 @@ router.put(
                         "You can only edit your own recipes."
 
                 });
-
             }
-
 
             const {
                 recipeName,
@@ -857,91 +894,107 @@ router.put(
                 image
             } = req.body;
 
-
             // ------------------------------------------
-            // UPDATE
+            // UPDATE FIELDS
             // ------------------------------------------
 
-            if (recipeName !== undefined) {
+            if (
+                recipeName !== undefined
+            ) {
 
                 recipe.recipeName =
                     recipeName.trim();
 
             }
 
-
-            if (category !== undefined) {
+            if (
+                category !== undefined
+            ) {
 
                 recipe.category =
                     category.trim();
 
             }
 
-
-            if (cookingTime !== undefined) {
+            if (
+                cookingTime !== undefined
+            ) {
 
                 recipe.cookingTime =
                     Number(cookingTime);
 
             }
 
-
-            if (difficulty !== undefined) {
+            if (
+                difficulty !== undefined
+            ) {
 
                 recipe.difficulty =
                     difficulty;
 
             }
 
-
-            if (diningTime !== undefined) {
+            if (
+                diningTime !== undefined
+            ) {
 
                 recipe.diningTime =
                     diningTime;
 
             }
 
-
-            if (ingredients !== undefined) {
+            if (
+                ingredients !== undefined
+            ) {
 
                 recipe.ingredients =
-                    Array.isArray(ingredients)
+                    Array.isArray(
+                        ingredients
+                    )
                         ? ingredients
-                        : String(ingredients)
+                        : String(
+                            ingredients
+                        )
                             .split(",")
                             .map(item =>
                                 item.trim()
                             )
                             .filter(Boolean);
-
             }
 
-
-            if (steps !== undefined) {
+            if (
+                steps !== undefined
+            ) {
 
                 recipe.steps =
-                    Array.isArray(steps)
+                    Array.isArray(
+                        steps
+                    )
                         ? steps
-                        : String(steps)
+                        : String(
+                            steps
+                        )
                             .split("\n")
                             .map(step =>
                                 step.trim()
                             )
                             .filter(Boolean);
-
             }
 
-
-            if (image !== undefined) {
+            if (
+                image !== undefined
+            ) {
 
                 recipe.image =
                     image.trim();
 
             }
 
-
             await recipe.save();
 
+            // ------------------------------------------
+            // POPULATE
+            // ------------------------------------------
 
             const updatedRecipe =
                 await Recipe.findById(id)
@@ -949,7 +1002,6 @@ router.put(
                         "userId",
                         "name email"
                     );
-
 
             return res.json({
 
@@ -978,9 +1030,7 @@ router.put(
                     "Unable to update recipe."
 
             });
-
         }
-
     }
 );
 
@@ -997,10 +1047,8 @@ router.delete(
 
         try {
 
-            const {
-                id
-            } = req.params;
-
+            const { id } =
+                req.params;
 
             if (
                 !mongoose.Types.ObjectId.isValid(id)
@@ -1014,13 +1062,10 @@ router.delete(
                         "Invalid recipe ID."
 
                 });
-
             }
-
 
             const recipe =
                 await Recipe.findById(id);
-
 
             if (!recipe) {
 
@@ -1032,12 +1077,10 @@ router.delete(
                         "Recipe not found."
 
                 });
-
             }
 
-
             // ------------------------------------------
-            // CHECK OWNER
+            // OWNER CHECK
             // ------------------------------------------
 
             if (
@@ -1053,12 +1096,9 @@ router.delete(
                         "You can only delete your own recipes."
 
                 });
-
             }
 
-
             await Recipe.findByIdAndDelete(id);
-
 
             return res.json({
 
@@ -1084,9 +1124,7 @@ router.delete(
                     "Unable to delete recipe."
 
             });
-
         }
-
     }
 );
 
@@ -1108,6 +1146,17 @@ router.get(
                     req.userId
                 ).select("-password");
 
+            if (!user) {
+
+                return res.status(404).json({
+
+                    success: false,
+
+                    message:
+                        "User not found."
+
+                });
+            }
 
             return res.json({
 
@@ -1132,9 +1181,259 @@ router.get(
                     "Unable to fetch profile."
 
             });
-
         }
+    }
+);
 
+
+// ======================================================
+// UPDATE PROFILE
+// PUT /api/updateprofile/:id
+// ======================================================
+
+router.put(
+    "/updateprofile/:id",
+    authenticateUser,
+    async (req, res) => {
+
+        try {
+
+            const { id } =
+                req.params;
+
+            // ------------------------------------------
+            // CHECK ID
+            // ------------------------------------------
+
+            if (
+                !mongoose.Types.ObjectId.isValid(id)
+            ) {
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message:
+                        "Invalid user ID."
+
+                });
+            }
+
+            // ------------------------------------------
+            // CHECK USER IS UPDATING HIS OWN PROFILE
+            // ------------------------------------------
+
+            if (
+                req.userId.toString() !==
+                id.toString()
+            ) {
+
+                return res.status(403).json({
+
+                    success: false,
+
+                    message:
+                        "You can only update your own profile."
+
+                });
+            }
+
+            // ------------------------------------------
+            // GET DATA
+            // ------------------------------------------
+
+            const {
+                name,
+                email,
+                bio,
+                gender,
+                profileImage
+            } = req.body;
+
+            // ------------------------------------------
+            // VALIDATION
+            // ------------------------------------------
+
+            if (!name || !name.trim()) {
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message:
+                        "Name is required."
+
+                });
+            }
+
+            if (!email || !email.trim()) {
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message:
+                        "Email is required."
+
+                });
+            }
+
+            // ------------------------------------------
+            // EMAIL FORMAT
+            // ------------------------------------------
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (
+                !emailPattern.test(
+                    email.trim()
+                )
+            ) {
+
+                return res.status(400).json({
+
+                    success: false,
+
+                    message:
+                        "Please enter a valid email address."
+
+                });
+            }
+
+            const normalizedEmail =
+                email
+                    .toLowerCase()
+                    .trim();
+
+            // ------------------------------------------
+            // CHECK EMAIL USED BY ANOTHER USER
+            // ------------------------------------------
+
+            const existingUser =
+                await User.findOne({
+
+                    email:
+                        normalizedEmail,
+
+                    _id: {
+                        $ne: id
+                    }
+
+                });
+
+            if (existingUser) {
+
+                return res.status(409).json({
+
+                    success: false,
+
+                    message:
+                        "This email is already used by another account."
+
+                });
+            }
+
+            // ------------------------------------------
+            // UPDATE USER
+            // ------------------------------------------
+
+            const updatedUser =
+                await User.findByIdAndUpdate(
+
+                    id,
+
+                    {
+                        name:
+                            name.trim(),
+
+                        email:
+                            normalizedEmail,
+
+                        bio:
+                            bio
+                                ? bio.trim()
+                                : "",
+
+                        gender:
+                            gender || "Other",
+
+                        profileImage:
+                            profileImage
+                                ? profileImage.trim()
+                                : ""
+                    },
+
+                    {
+                        new: true,
+
+                        runValidators: true
+                    }
+
+                ).select("-password");
+
+            // ------------------------------------------
+            // USER NOT FOUND
+            // ------------------------------------------
+
+            if (!updatedUser) {
+
+                return res.status(404).json({
+
+                    success: false,
+
+                    message:
+                        "User not found."
+
+                });
+            }
+
+            // ------------------------------------------
+            // RESPONSE
+            // ------------------------------------------
+
+            return res.json({
+
+                success: true,
+
+                message:
+                    "Profile updated successfully.",
+
+                user:
+                    updatedUser
+
+            });
+
+        } catch (error) {
+
+            console.error(
+                "Update Profile Error:",
+                error
+            );
+
+            // Duplicate email
+            if (error.code === 11000) {
+
+                return res.status(409).json({
+
+                    success: false,
+
+                    message:
+                        "This email is already registered."
+
+                });
+            }
+
+            return res.status(500).json({
+
+                success: false,
+
+                message:
+                    error.message ||
+                    "Unable to update profile."
+
+            });
+        }
     }
 );
 
@@ -1157,7 +1456,6 @@ router.post(
                 "Logged out successfully."
 
         });
-
     }
 );
 

@@ -4,7 +4,13 @@ const mongoose = require("mongoose");
 // MONGODB CONNECTION
 // ======================================================
 
-mongoose.connect("mongodb://127.0.0.1:27017/my_recipe");
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => {
+        console.log("Connected to MongoDB");
+    })
+    .catch((error) => {
+        console.error("MongoDB connection error:", error);
+    });
 
 // ======================================================
 // DATABASE CONNECTION
@@ -12,14 +18,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/my_recipe");
 
 const db = mongoose.connection;
 
-// Connection error
 db.on("error", (error) => {
     console.error("MongoDB connection error:", error);
-});
-
-// Successfully connected
-db.once("open", () => {
-    console.log("Connected to MongoDB");
 });
 
 // Export database connection

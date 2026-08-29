@@ -1,0 +1,768 @@
+/* =========================================================
+   PROFILE PAGE
+========================================================= */
+
+.profile-page {
+    min-height: 100vh;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffaf5 0%,
+            #f8f7f4 50%,
+            #fff 100%
+        );
+
+    padding: 30px 50px 60px;
+
+    color: #252525;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   TOP BAR
+========================================================= */
+
+.profile-topbar {
+    max-width: 1150px;
+
+    margin: 0 auto 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.dashboard-link {
+    border: none;
+
+    background: transparent;
+
+    color: #666;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    padding: 8px 0;
+
+    transition: 0.2s ease;
+}
+
+.dashboard-link:hover {
+    color: #d35400;
+}
+
+.profile-brand {
+    color: #d35400;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
+.profile-container {
+    max-width: 1150px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   PROFILE HERO
+========================================================= */
+
+.profile-hero {
+    background: white;
+
+    border: 1px solid #ece7e0;
+
+    border-radius: 24px;
+
+    padding: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+
+    position: relative;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.06);
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   PROFILE IMAGE
+========================================================= */
+
+.profile-image-container {
+    position: relative;
+
+    flex-shrink: 0;
+}
+
+.profile-img {
+    width: 125px;
+    height: 125px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    display: block;
+
+    border: 5px solid #fff;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.14);
+}
+
+.profile-status-dot {
+    position: absolute;
+
+    right: 5px;
+    bottom: 8px;
+
+    width: 29px;
+    height: 29px;
+
+    border-radius: 50%;
+
+    background: #2eaf61;
+
+    color: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+
+    font-weight: 800;
+
+    border: 3px solid white;
+}
+
+
+/* =========================================================
+   PROFILE INTRODUCTION
+========================================================= */
+
+.profile-introduction {
+    flex: 1;
+}
+
+.profile-label {
+    color: #d35400;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.profile-introduction h1 {
+    margin: 7px 0 6px;
+
+    font-size: 34px;
+
+    line-height: 1.1;
+
+    font-weight: 800;
+}
+
+.profile-introduction p {
+    margin: 0 0 12px;
+
+    color: #777;
+
+    font-size: 15px;
+
+    line-height: 1.5;
+}
+
+.active-badge {
+    display: inline-block;
+
+    background: #eaf8ef;
+
+    color: #27874a;
+
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   HERO EDIT BUTTON
+========================================================= */
+
+.hero-edit-btn {
+    border: none;
+
+    background: #d35400;
+
+    color: white;
+
+    border-radius: 11px;
+
+    padding: 12px 18px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 18px rgba(211, 84, 0, 0.18);
+
+    transition: 0.25s ease;
+}
+
+.hero-edit-btn:hover {
+    background: #b94700;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   PROFILE SECTION
+========================================================= */
+
+.profile-section {
+    background: white;
+
+    border: 1px solid #ece7e0;
+
+    border-radius: 20px;
+
+    padding: 28px;
+
+    margin-bottom: 22px;
+
+    box-shadow:
+        0 8px 30px rgba(0, 0, 0, 0.035);
+}
+
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.section-title {
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 23px;
+}
+
+.section-icon {
+    width: 45px;
+    height: 45px;
+
+    border-radius: 12px;
+
+    background: #fff1e8;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+}
+
+.section-title h2 {
+    margin: 0;
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+.section-title p {
+    margin: 4px 0 0;
+
+    color: #888;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   PERSONAL INFORMATION GRID
+========================================================= */
+
+.profile-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+.profile-info-card {
+    background: #faf9f7;
+
+    border: 1px solid #eeeae4;
+
+    border-radius: 13px;
+
+    padding: 17px 18px;
+}
+
+.info-label {
+    display: block;
+
+    color: #999;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.7px;
+
+    margin-bottom: 7px;
+}
+
+.profile-info-card strong {
+    display: block;
+
+    color: #333;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    word-break: break-word;
+}
+
+
+/* =========================================================
+   ACCOUNT GRID
+========================================================= */
+
+.account-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+.account-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    border: 1px solid #eeeae4;
+
+    background: #faf9f7;
+
+    border-radius: 13px;
+
+    padding: 16px;
+}
+
+.account-card-icon {
+    width: 43px;
+    height: 43px;
+
+    border-radius: 11px;
+
+    background: #fff1e8;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 19px;
+
+    flex-shrink: 0;
+}
+
+.account-card span {
+    display: block;
+
+    color: #999;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    margin-bottom: 5px;
+}
+
+.account-card strong {
+    display: block;
+
+    color: #333;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   ACTIONS
+========================================================= */
+
+.profile-actions {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 15px;
+}
+
+.action-btn {
+    border: 1px solid #e9e4dc;
+
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 17px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 13px;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.action-btn:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.07);
+}
+
+.action-btn > span {
+    width: 42px;
+    height: 42px;
+
+    border-radius: 11px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+
+    flex-shrink: 0;
+}
+
+.action-btn strong {
+    display: block;
+
+    font-size: 14px;
+
+    color: #333;
+
+    margin-bottom: 4px;
+}
+
+.action-btn small {
+    display: block;
+
+    color: #999;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================================
+   EDIT ACTION
+========================================================= */
+
+.edit-action > span {
+    background: #fff1e8;
+}
+
+
+/* =========================================================
+   PASSWORD ACTION
+========================================================= */
+
+.password-action > span {
+    background: #f0f4ff;
+}
+
+
+/* =========================================================
+   LOGOUT ACTION
+========================================================= */
+
+.logout-action > span {
+    background: #fff0f0;
+}
+
+.logout-action strong {
+    color: #c0392b;
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.profile-loading {
+    min-height: 70vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+}
+
+.profile-loading h2 {
+    margin: 18px 0 5px;
+
+    font-size: 22px;
+}
+
+.profile-loading p {
+    margin: 0;
+
+    color: #888;
+}
+
+.profile-spinner {
+    width: 46px;
+    height: 46px;
+
+    border: 4px solid #eee;
+
+    border-top-color: #d35400;
+
+    border-radius: 50%;
+
+    animation: profileSpin 0.8s linear infinite;
+}
+
+@keyframes profileSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   ERROR
+========================================================= */
+
+.profile-error {
+    max-width: 550px;
+
+    margin: 100px auto;
+
+    padding: 45px 35px;
+
+    background: white;
+
+    border: 1px solid #eedddd;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0 10px 35px rgba(0, 0, 0, 0.05);
+}
+
+.error-icon {
+    font-size: 42px;
+
+    margin-bottom: 12px;
+}
+
+.profile-error h2 {
+    margin: 0 0 10px;
+
+    font-size: 24px;
+}
+
+.profile-error p {
+    color: #777;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+.primary-btn {
+    border: none;
+
+    background: #d35400;
+
+    color: white;
+
+    padding: 12px 22px;
+
+    border-radius: 10px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.primary-btn:hover {
+    background: #b94700;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .profile-page {
+        padding: 25px;
+    }
+
+    .profile-hero {
+        flex-wrap: wrap;
+    }
+
+    .hero-edit-btn {
+        width: 100%;
+    }
+
+    .account-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-actions {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 650px) {
+
+    .profile-page {
+        padding: 18px;
+    }
+
+    .profile-topbar {
+        margin-bottom: 20px;
+    }
+
+    .profile-brand {
+        font-size: 10px;
+    }
+
+    .profile-hero {
+        flex-direction: column;
+
+        align-items: center;
+
+        text-align: center;
+
+        padding: 28px 20px;
+    }
+
+    .profile-introduction {
+        width: 100%;
+    }
+
+    .profile-introduction h1 {
+        font-size: 28px;
+    }
+
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-section {
+        padding: 20px;
+    }
+}
+
+
+@media (max-width: 430px) {
+
+    .profile-topbar {
+        align-items: flex-start;
+
+        gap: 10px;
+
+        flex-direction: column;
+    }
+
+    .profile-img {
+        width: 105px;
+        height: 105px;
+    }
+
+    .profile-introduction h1 {
+        font-size: 25px;
+    }
+
+    .profile-section {
+        border-radius: 15px;
+    }
+
+    .section-title h2 {
+        font-size: 18px;
+    }
+}
+

@@ -1,0 +1,850 @@
+/* =========================================================
+   RECIPE LIST PAGE
+========================================================= */
+
+.recipe-page {
+    min-height: 100vh;
+    background: #f8f9fb;
+    padding: 40px 6%;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #1f2937;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.recipe-header {
+    max-width: 1400px;
+    margin: 0 auto 30px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.header-small {
+    display: inline-block;
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+
+    color: #f97316;
+    margin-bottom: 8px;
+}
+
+.recipe-header h1 {
+    margin: 0;
+
+    font-size: 42px;
+    line-height: 1.15;
+    font-weight: 800;
+
+    color: #111827;
+}
+
+.recipe-header p {
+    margin: 12px 0 0;
+
+    font-size: 17px;
+    color: #6b7280;
+}
+
+
+/* =========================================================
+   DASHBOARD BUTTON
+========================================================= */
+
+.dashboard-btn {
+    border: 1px solid #f97316;
+    background: white;
+
+    color: #f97316;
+
+    padding: 12px 20px;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.dashboard-btn:hover {
+    background: #f97316;
+    color: white;
+}
+
+
+/* =========================================================
+   SEARCH AREA
+========================================================= */
+
+.search-area {
+    max-width: 1400px;
+    margin: 0 auto 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+}
+
+.search-wrapper {
+    position: relative;
+
+    width: 100%;
+    max-width: 600px;
+}
+
+.search-wrapper > span {
+    position: absolute;
+
+    left: 17px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 18px;
+
+    pointer-events: none;
+}
+
+.search-wrapper input {
+    width: 100%;
+    height: 52px;
+
+    box-sizing: border-box;
+
+    padding: 0 50px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    background: white;
+
+    font-size: 15px;
+    color: #111827;
+
+    outline: none;
+
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.04);
+
+    transition: 0.2s ease;
+}
+
+.search-wrapper input:focus {
+    border-color: #f97316;
+
+    box-shadow:
+        0 0 0 3px rgba(249, 115, 22, 0.12);
+}
+
+.search-wrapper input::placeholder {
+    color: #9ca3af;
+}
+
+
+/* =========================================================
+   CLEAR SEARCH BUTTON
+========================================================= */
+
+.clear-btn {
+    position: absolute;
+
+    right: 12px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 30px;
+    height: 30px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f3f4f6;
+
+    color: #6b7280;
+
+    font-size: 20px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.clear-btn:hover {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+
+/* =========================================================
+   RECIPE TOTAL
+========================================================= */
+
+.recipe-total {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    white-space: nowrap;
+
+    color: #6b7280;
+    font-size: 15px;
+}
+
+.recipe-total strong {
+    color: #111827;
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   RECIPE GRID
+========================================================= */
+
+.recipe-grid {
+    max-width: 1400px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 28px;
+}
+
+
+/* =========================================================
+   RECIPE CARD
+========================================================= */
+
+.recipe-card {
+    background: white;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    border: 1px solid #eceff2;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    min-width: 0;
+}
+
+.recipe-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 16px 35px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================================================
+   IMAGE BOX
+========================================================= */
+
+.recipe-image-box {
+    position: relative;
+
+    width: 100%;
+    height: 245px;
+
+    overflow: hidden;
+
+    background: #f3f4f6;
+}
+
+.recipe-image {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition: transform 0.4s ease;
+}
+
+.recipe-card:hover .recipe-image {
+    transform: scale(1.04);
+}
+
+
+/* =========================================================
+   CATEGORY
+========================================================= */
+
+.category {
+    position: absolute;
+
+    left: 16px;
+    bottom: 16px;
+
+    padding: 7px 13px;
+
+    background: white;
+
+    color: #f97316;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    box-shadow:
+        0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================================
+   HEART BUTTON
+========================================================= */
+
+.heart-btn {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: white;
+
+    color: #374151;
+
+    font-size: 23px;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.12);
+
+    transition: 0.2s ease;
+}
+
+.heart-btn:hover {
+    color: #ef4444;
+
+    transform: scale(1.08);
+}
+
+
+/* =========================================================
+   RECIPE CONTENT
+========================================================= */
+
+.recipe-content {
+    padding: 22px;
+}
+
+.recipe-content h2 {
+    margin: 0 0 20px;
+
+    font-size: 23px;
+    line-height: 1.3;
+
+    font-weight: 800;
+
+    color: #111827;
+}
+
+
+/* =========================================================
+   INFO ROW
+========================================================= */
+
+.info-row {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 15px;
+
+    padding-bottom: 18px;
+
+    border-bottom: 1px solid #eef0f2;
+}
+
+.info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 0;
+}
+
+.info-icon {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #fff4ed;
+
+    font-size: 17px;
+}
+
+.info small,
+.extra-info small,
+.creator small {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #9ca3af;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.info strong {
+    display: block;
+
+    color: #374151;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   EXTRA INFORMATION
+========================================================= */
+
+.extra-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 17px 0;
+
+    border-bottom: 1px solid #eef0f2;
+}
+
+.extra-info > span {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background: #f3f1ff;
+
+    font-size: 17px;
+}
+
+.extra-info strong {
+    display: block;
+
+    color: #374151;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   BOTTOM SECTION
+========================================================= */
+
+.bottom-section {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding-top: 18px;
+}
+
+
+/* =========================================================
+   CREATOR
+========================================================= */
+
+.creator {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    min-width: 0;
+}
+
+.creator-icon {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #f3f1ff;
+
+    font-size: 18px;
+}
+
+.creator strong {
+    display: block;
+
+    max-width: 120px;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color: #374151;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   VIEW RECIPE BUTTON
+========================================================= */
+
+.view-btn {
+    border: none;
+
+    background: #f97316;
+
+    color: white;
+
+    padding: 11px 17px;
+
+    border-radius: 9px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    white-space: nowrap;
+
+    transition: 0.2s ease;
+}
+
+.view-btn:hover {
+    background: #ea580c;
+
+    transform: translateY(-1px);
+}
+
+.view-btn span {
+    font-size: 17px;
+}
+
+
+/* Remove default Link styling */
+
+.bottom-section a {
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   NO RECIPES
+========================================================= */
+
+.no-recipes {
+    max-width: 600px;
+
+    margin: 70px auto;
+
+    padding: 50px 30px;
+
+    background: white;
+
+    border: 1px solid #eceff2;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.no-recipes > div {
+    font-size: 50px;
+
+    margin-bottom: 15px;
+}
+
+.no-recipes h2 {
+    margin: 0 0 10px;
+
+    font-size: 25px;
+
+    color: #111827;
+}
+
+.no-recipes p {
+    margin: 0 0 25px;
+
+    color: #6b7280;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   LOADING / ERROR MESSAGE
+========================================================= */
+
+.message-box {
+    max-width: 550px;
+
+    margin: 100px auto;
+
+    padding: 50px 30px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.message-box h2 {
+    margin: 20px 0;
+
+    color: #374151;
+
+    font-size: 22px;
+}
+
+.message-icon {
+    font-size: 50px;
+}
+
+
+/* =========================================================
+   SPINNER
+========================================================= */
+
+.spinner {
+    width: 45px;
+    height: 45px;
+
+    margin: 0 auto;
+
+    border: 4px solid #fed7aa;
+
+    border-top-color: #f97316;
+
+    border-radius: 50%;
+
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   MESSAGE BACK BUTTON
+========================================================= */
+
+.message-box .back-btn {
+    border: none;
+
+    background: #f97316;
+
+    color: white;
+
+    padding: 12px 20px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.message-box .back-btn:hover {
+    background: #ea580c;
+}
+
+
+/* =========================================================
+   RESPONSIVE - LARGE TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+    .recipe-page {
+        padding: 35px 4%;
+    }
+
+    .recipe-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .recipe-header h1 {
+        font-size: 36px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .recipe-page {
+        padding: 25px 20px;
+    }
+
+    .recipe-header {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .recipe-header h1 {
+        font-size: 32px;
+    }
+
+    .dashboard-btn {
+        width: 100%;
+    }
+
+    .search-area {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .search-wrapper {
+        max-width: none;
+    }
+
+    .recipe-total {
+        justify-content: flex-end;
+    }
+
+    .recipe-grid {
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+    }
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .recipe-page {
+        padding: 20px 14px;
+    }
+
+    .recipe-header h1 {
+        font-size: 28px;
+    }
+
+    .recipe-header p {
+        font-size: 14px;
+    }
+
+    .recipe-image-box {
+        height: 220px;
+    }
+
+    .recipe-content {
+        padding: 18px;
+    }
+
+    .recipe-content h2 {
+        font-size: 21px;
+    }
+
+    .info-row {
+        grid-template-columns: 1fr;
+    }
+
+    .bottom-section {
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .creator {
+        width: 100%;
+    }
+
+    .bottom-section a,
+    .view-btn {
+        width: 100%;
+    }
+
+    .view-btn {
+        box-sizing: border-box;
+    }
+}
