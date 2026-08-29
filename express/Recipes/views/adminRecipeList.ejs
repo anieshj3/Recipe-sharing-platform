@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recipe Management</title>
+
+    <link rel="stylesheet" href="/stylesheets/adminRecipeList.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+
+    <div class="sidebar">
+
+        <h2>RecipeShare</h2>
+
+        <ul>
+
+            <li><a href="/admin/dashboard">Dashboard</a></li>
+
+            <li><a href="/admin/users">Users</a></li>
+
+            <li><a href="/admin/user-management">User Management</a></li>
+
+            <li><a href="/admin/recipes">Recipes</a></li>
+
+            <li><a href="/admin/mostViewed">Most Viewed</a></li>
+
+            <li><a href="/admin/login">Logout</a></li>
+
+        </ul>
+
+    </div>
+
+    <!-- Main Content -->
+
+    <div class="content">
+
+        <h1>Recipe Management</h1>
+
+        <input
+            type="text"
+            placeholder="Search Recipe">
+
+        <br><br>
+
+        <table border="1" cellpadding="10" cellspacing="0" width="100%">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Recipe Name</th>
+
+                    <th>Category</th>
+
+                    <th>Author</th>
+
+                    <th>Status</th>
+
+                    <th>Action</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                <tr>
+
+                    <td>1</td>
+
+                    <td>Chicken Biryani</td>
+
+                    <td>Non-Veg</td>
+
+                    <td>Rahul</td>
+
+                    <td>Published</td>
+
+                    <td>
+
+                        <a href="/admin/recipe/1">View</a>
+
+                        |
+
+                        <a href="#">Delete</a>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>2</td>
+
+                    <td>Paneer Butter Masala</td>
+
+                    <td>Veg</td>
+
+                    <td>Priya</td>
+
+                    <td>Published</td>
+
+                    <td>
+
+                        <a href="/admin/recipe/2">View</a>
+
+                        |
+
+                        <a href="#">Delete</a>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>3</td>
+
+                    <td>Fish Curry</td>
+
+                    <td>Sea Food</td>
+
+                    <td>David</td>
+
+                    <td>Pending</td>
+
+                    <td>
+
+                        <a href="/admin/recipe/3">View</a>
+
+                        |
+
+                        <a href="#">Delete</a>
+
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td>4</td>
+
+                    <td>Veg Fried Rice</td>
+
+                    <td>Veg</td>
+
+                    <td>Aniesh</td>
+
+                    <td>Published</td>
+
+                    <td>
+
+                        <a href="/admin/recipe/4">View</a>
+
+                        |
+
+                        <a href="#">Delete</a>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
