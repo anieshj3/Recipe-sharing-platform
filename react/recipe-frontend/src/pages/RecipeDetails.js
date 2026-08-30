@@ -41,10 +41,10 @@ function RecipeDetails() {
 
         // Backend uploaded image
         if (imageUrl.startsWith("/")) {
-            return `http://localhost:5000${imageUrl}`;
+            return `https://recipe-sharing-platform-2-nhqu.onrender.com${imageUrl}`;
         }
 
-        return `http://localhost:5000/${imageUrl}`;
+        return `https://recipe-sharing-platform-2-nhqu.onrender.com/${imageUrl}`;
     };
 
     // =====================================================
@@ -74,7 +74,7 @@ function RecipeDetails() {
                 }
 
                 const response = await axios.get(
-                    `http://localhost:5000/api/recipes/${id}`,
+                    `https://recipe-sharing-platform-2-nhqu.onrender.com/api/recipes/${id}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`

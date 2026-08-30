@@ -176,7 +176,7 @@ function CreateRecipe() {
 
             const response = await axios.post(
 
-                "http://localhost:5000/api/createrecipe",
+                "https://recipe-sharing-platform-2-nhqu.onrender.com/api/createrecipe",
 
                 recipe,
 

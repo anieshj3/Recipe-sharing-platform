@@ -46,11 +46,11 @@ function MyRecipes() {
 
         // Backend image path
         if (imageValue.startsWith("/")) {
-            return `http://localhost:5000${imageValue}`;
+            return `https://recipe-sharing-platform-2-nhqu.onrender.com${imageValue}`;
         }
 
         // Backend image path without /
-        return `http://localhost:5000/${imageValue}`;
+        return `https://recipe-sharing-platform-2-nhqu.onrender.com/${imageValue}`;
     };
 
     // =====================================================
@@ -80,7 +80,7 @@ function MyRecipes() {
 
             try {
                 const response = await axios.get(
-                    "http://localhost:5000/api/myrecipes",
+                    "https://recipe-sharing-platform-2-nhqu.onrender.com/api/myrecipes",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -152,7 +152,7 @@ function MyRecipes() {
 
         try {
             await axios.delete(
-                `http://localhost:5000/api/deleterecipe/${id}`,
+                `https://recipe-sharing-platform-2-nhqu.onrender.com/api/deleterecipe/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
