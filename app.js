@@ -46,7 +46,10 @@ const app = express();
 
 app.use(
     cors({
-        origin: "http://localhost:3000",
+        origin: [
+            "http://localhost:3000",
+            "https://recipe-sharing-platform-9nwb.vercel.app"
+        ],
         methods: [
             "GET",
             "POST",
