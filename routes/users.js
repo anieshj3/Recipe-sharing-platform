@@ -313,7 +313,7 @@ router.post(
 // ======================================================
 
 router.post(
-    "/loginapi",
+    "/login",
     async (req, res) => {
 
         try {
