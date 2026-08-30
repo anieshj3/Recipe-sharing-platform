@@ -49,7 +49,7 @@ function EditRecipe() {
             try {
 
                 const response = await axios.get(
-                    `http://localhost:5000/api/recipe/${id}`,
+                    `https://recipe-sharing-platform-2-nhqu.onrender.com/api/recipe/${id}`,
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -266,7 +266,7 @@ function EditRecipe() {
         try {
 
             const response = await axios.put(
-                `http://localhost:5000/api/updaterecipe/${id}`,
+                `https://recipe-sharing-platform-2-nhqu.onrender.com/api/updaterecipe/${id}`,
                 updatedRecipe,
                 {
                     headers: {
@@ -369,7 +369,7 @@ function EditRecipe() {
         try {
 
             const response = await axios.delete(
-                `http://localhost:5000/api/deleterecipe/${id}`,
+                `https://recipe-sharing-platform-2-nhqu.onrender.com/api/deleterecipe/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`

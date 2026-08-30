@@ -58,7 +58,7 @@ function AdminUsers() {
                 // ==================================================
 
                 const response = await axios.get(
-                    "http://localhost:5000/api/admin/users",
+                    "https://recipe-sharing-platform-2-nhqu.onrender.com/api/admin/users",
                     {
                         headers: {
                             Authorization:
@@ -212,7 +212,7 @@ function AdminUsers() {
             // ==================================================
 
             await axios.delete(
-                `http://localhost:5000/api/admin/users/${userId}`,
+                `https://recipe-sharing-platform-2-nhqu.onrender.com/api/admin/users/${userId}`,
                 {
                     headers: {
                         Authorization:

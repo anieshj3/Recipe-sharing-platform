@@ -35,7 +35,7 @@ function Profile() {
                 setLoading(true);
 
                 const response = await axios.get(
-                    "http://localhost:5000/api/profile",
+                    "https://recipe-sharing-platform-2-nhqu.onrender.com/api/profile",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`,

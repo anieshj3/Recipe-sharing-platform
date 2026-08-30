@@ -80,7 +80,7 @@ function Signup() {
             setLoading(true);
 
             const response = await axios.post(
-                "http://localhost:5000/api/signup",
+                "https://recipe-sharing-platform-2-nhqu.onrender.com/api/signup",
                 {
                     name: name.trim(),
                     email: email.trim(),

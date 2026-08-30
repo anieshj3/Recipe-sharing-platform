@@ -92,7 +92,7 @@ function AdminDashboard() {
 
                 const dashboardResponse =
                     await axios.get(
-                        "http://localhost:5000/api/admin/dashboard",
+                        "https://recipe-sharing-platform-2-nhqu.onrender.com/api/admin/dashboard",
                         getConfig()
                     );
 
@@ -121,7 +121,7 @@ function AdminDashboard() {
 
                 const usersResponse =
                     await axios.get(
-                        "http://localhost:5000/api/admin/users",
+                        "https://recipe-sharing-platform-2-nhqu.onrender.com/api/admin/users",
                         getConfig()
                     );
 
@@ -156,7 +156,7 @@ function AdminDashboard() {
 
                 const recipesResponse =
                     await axios.get(
-                        "http://localhost:5000/api/admin/recipes",
+                        "https://recipe-sharing-platform-2-nhqu.onrender.com/api/admin/recipes",
                         getConfig()
                     );
 
@@ -360,7 +360,7 @@ function AdminDashboard() {
 
 
             await axios.delete(
-                `http://localhost:5000/api/admin/users/${userId}`,
+                `https://recipe-sharing-platform-2-nhqu.onrender.com/api/admin/users/${userId}`,
                 getConfig()
             );
 
@@ -444,7 +444,7 @@ function AdminDashboard() {
 
 
             await axios.delete(
-                `http://localhost:5000/api/admin/recipes/${recipeId}`,
+                `https://recipe-sharing-platform-2-nhqu.onrender.com/api/admin/recipes/${recipeId}`,
                 getConfig()
             );
 
@@ -529,7 +529,7 @@ function AdminDashboard() {
 
             const response =
                 await axios.put(
-                    `http://localhost:5000/api/admin/recipes/${recipeId}/block`,
+                    `https://recipe-sharing-platform-2-nhqu.onrender.com/api/admin/recipes/${recipeId}/block`,
                     {},
                     getConfig()
                 );
@@ -622,7 +622,7 @@ function AdminDashboard() {
 
             const response =
                 await axios.put(
-                    `http://localhost:5000/api/admin/recipes/${recipeId}/unblock`,
+                    `https://recipe-sharing-platform-2-nhqu.onrender.com/api/admin/recipes/${recipeId}/unblock`,
                     {},
                     getConfig()
                 );

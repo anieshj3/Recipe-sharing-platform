@@ -57,7 +57,7 @@ function Login() {
             // ==========================================
 
             const response = await axios.post(
-                "http://localhost:5000/api/login",
+                "https://recipe-sharing-platform-2-nhqu.onrender.com/api/login",
                 {
                     email: email.trim(),
                     password: password

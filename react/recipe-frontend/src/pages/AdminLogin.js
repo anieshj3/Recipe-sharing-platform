@@ -35,7 +35,7 @@ function AdminLogin() {
             setLoading(true);
 
             const response = await axios.post(
-                "http://localhost:5000/api/admin/login",
+                "https://recipe-sharing-platform-2-nhqu.onrender.com/api/admin/login",
                 {
                     email: email.trim(),
                     password: password

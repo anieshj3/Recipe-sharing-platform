@@ -42,10 +42,10 @@ function Dashboard() {
 
         // Backend image path
         if (image.startsWith("/")) {
-            return `http://localhost:5000${image}`;
+            return `https://recipe-sharing-platform-2-nhqu.onrender.com${image}`;
         }
 
-        return `http://localhost:5000/${image}`;
+        return `https://recipe-sharing-platform-2-nhqu.onrender.com/${image}`;
     };
 
     // ==================================================
@@ -75,7 +75,7 @@ function Dashboard() {
 
         axios
             .get(
-                "http://localhost:5000/api/recipes",
+                "https://recipe-sharing-platform-2-nhqu.onrender.com/api/recipes",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`

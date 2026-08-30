@@ -56,7 +56,7 @@ function EditProfile() {
             try {
 
                 const response = await axios.get(
-                    "http://localhost:5000/api/profile",
+                    "https://recipe-sharing-platform-2-nhqu.onrender.com/api/profile",
                     {
                         headers: {
                             Authorization: `Bearer ${token}`
@@ -285,7 +285,7 @@ function EditProfile() {
             const response =
                 await axios.put(
 
-                    `http://localhost:5000/api/updateprofile/${user._id}`,
+                    `https://recipe-sharing-platform-2-nhqu.onrender.com/api/updateprofile/${user._id}`,
 
                     updatedUser,
 

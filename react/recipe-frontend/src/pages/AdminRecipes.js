@@ -49,7 +49,7 @@ function AdminRecipes() {
             // ==================================================
 
             const response = await axios.get(
-                "http://localhost:5000/api/admin/recipes",
+                "https://recipe-sharing-platform-2-nhqu.onrender.com/api/admin/recipes",
                 config
             );
 
@@ -161,7 +161,7 @@ function AdminRecipes() {
             // ==================================================
 
             await axios.delete(
-                `http://localhost:5000/api/admin/recipes/${recipeId}`,
+                `https://recipe-sharing-platform-2-nhqu.onrender.com/api/admin/recipes/${recipeId}`,
                 config
             );
 
@@ -396,7 +396,7 @@ function AdminRecipes() {
                                                 src={
                                                     recipe.image.startsWith("http")
                                                         ? recipe.image
-                                                        : `http://localhost:5000/${recipe.image}`
+                                                        : `https://recipe-sharing-platform-2-nhqu.onrender.com/${recipe.image}`
                                                 }
                                                 alt={
                                                     recipe.recipeName ||

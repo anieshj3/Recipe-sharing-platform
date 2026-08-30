@@ -58,7 +58,7 @@ function ChangePassword() {
             setLoading(true);
 
             const response = await axios.put(
-                "http://localhost:5000/api/changepassword",
+                "https://recipe-sharing-platform-2-nhqu.onrender.com/api/changepassword",
                 {
                     oldPassword: oldPassword,
                     newPassword: newPassword,
