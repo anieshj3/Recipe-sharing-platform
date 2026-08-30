@@ -111,7 +111,7 @@ const authenticateUser = async (req, res, next) => {
 // ======================================================
 
 router.post(
-    "/signup",
+    "/signupapi",
     async (req, res) => {
 
         try {
@@ -313,7 +313,7 @@ router.post(
 // ======================================================
 
 router.post(
-    "/login",
+    "/loginapi",
     async (req, res) => {
 
         try {

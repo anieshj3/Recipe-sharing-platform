@@ -1,56 +1,56 @@
 var express = require("express");
 var router = express.Router();
 
-const Admin = require("../models/adminModel");/* ===========================
+const Admin = require("../models/adminModel");
+
+/* ===========================
    User Pages
 =========================== */
 
 router.get("/", (req, res) => {
-    res.render("index");
+    res.render("index", { title: "Recipe Sharing Platform" });
 });
 
 router.get("/login", (req, res) => {
-    res.render("login");
+    res.render("login", { title: "Login" });
 });
 
 router.get("/signup", (req, res) => {
-    res.render("signup");
+    res.render("signup", { title: "Sign Up" });
 });
 
 router.get("/forgotPassword", (req, res) => {
-    res.render("forgotPassword");
+    res.render("forgotPassword", { title: "Forgot Password" });
 });
 
 router.get("/resetPassword", (req, res) => {
-    res.render("resetPassword");
+    res.render("resetPassword", { title: "Reset Password" });
 });
 
 router.get("/changePassword", (req, res) => {
-    res.render("changePassword");
+    res.render("changePassword", { title: "Change Password" });
 });
 
 router.get("/dashboard", (req, res) => {
-    res.render("dashboard");
+    res.render("dashboard", { title: "Dashboard" });
 });
 
 router.get("/profile", (req, res) => {
-    res.render("profile");
+    res.render("profile", { title: "Profile" });
 });
 
 router.get("/editProfile", (req, res) => {
-    res.render("editProfile");
+    res.render("editProfile", { title: "Edit Profile" });
 });
 
 /* ===========================
    Admin Pages
 =========================== */
 
-// Admin Login Page
 router.get("/adminLogin", (req, res) => {
-    res.render("adminLogin");
+    res.render("adminLogin", { title: "Admin Login" });
 });
 
-// Admin Login API
 router.post("/adminlogin", async (req, res) => {
 
     const { email, password } = req.body;
@@ -79,37 +79,30 @@ router.post("/adminlogin", async (req, res) => {
 
 });
 
-// Admin Dashboard
 router.get("/adminDashboard", (req, res) => {
-    res.render("adminDashboard");
+    res.render("adminDashboard", { title: "Admin Dashboard" });
 });
 
-// User List
 router.get("/userList", (req, res) => {
-    res.render("userList");
+    res.render("userList", { title: "User List" });
 });
 
-// User Management
 router.get("/userManagement", (req, res) => {
-    res.render("userManagement");
+    res.render("userManagement", { title: "User Management" });
 });
 
-// Recipe List
 router.get("/adminRecipeList", (req, res) => {
-    res.render("adminRecipeList");
+    res.render("adminRecipeList", { title: "Recipe List" });
 });
 
-// Recipe Details
 router.get("/adminRecipeView", (req, res) => {
-    res.render("adminRecipeView");
+    res.render("adminRecipeView", { title: "Recipe Details" });
 });
 
-// Most Viewed Recipes
 router.get("/mostViewed", (req, res) => {
-    res.render("mostViewed");
+    res.render("mostViewed", { title: "Most Viewed Recipes" });
 });
 
-// Logout
 router.get("/logout", (req, res) => {
     res.redirect("/adminLogin");
 });
@@ -131,13 +124,9 @@ router.get("/createAdmin", async (req, res) => {
         }
 
         const newAdmin = new Admin({
-
             name: "Admin",
-
             email: "aniesh@gmail.com",
-
             password: "aniesh123"
-
         });
 
         await newAdmin.save();

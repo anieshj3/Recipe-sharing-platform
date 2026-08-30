@@ -46,10 +46,7 @@ const app = express();
 
 app.use(
     cors({
-        origin: [
-            "http://localhost:3000",
-            "https://recipe-sharing-platform-9nwb.vercel.app"
-        ],
+        origin: "http://localhost:3000",
         methods: [
             "GET",
             "POST",
@@ -75,8 +72,6 @@ app.set(
     "view engine",
     "ejs"
 );
-
-app.locals.title = "Recipe Sharing Platform";
 
 
 // ======================================================
