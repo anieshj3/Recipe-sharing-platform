@@ -111,7 +111,7 @@ const authenticateUser = async (req, res, next) => {
 // ======================================================
 
 router.post(
-    "/signupapi",
+    "/signup",
     async (req, res) => {
 
         try {
